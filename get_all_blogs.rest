@@ -1,0 +1,11 @@
+POST http://localhost:3001/api/blogs/ HTTP/1.1
+content-type: application/json
+
+{
+   "title":"react",
+   "author":"npm",
+   "url":"www.npm.com",
+   "likes":456 
+}
+###
+GET http://localhost:3003/api/blogs
