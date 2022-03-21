@@ -8,7 +8,7 @@ userRouter.get("/", async (request, response) => {
 });
 userRouter.post("/", async (req, res) => {
   const { username, name, password } = req.body;
-  const existingUser = await User.findOne({ username, password });
+  const existingUser = await User.findOne({ username });
 
   if (existingUser) {
     return res.status(400).json({
