@@ -1,13 +1,21 @@
 POST http://localhost:3003/api/blogs HTTP/1.1
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5c2VybmFtZSI6Im1sdXVra2FpIiwiaW
+Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vaGFtZWRhamUiLCJpZCI6IjYyMzg1MzUxYmRjYmRkMTE2OGIwNDc2NiIsImlhdCI6MTY0Nzg2Njc0N30.rviHgPUl1V5cGZV93StJ9KKjCtj6WdgKGRlS7zkSxfs
 
 
 
 {
-   "title": "monday",
-    "author": "mohamed",
+   "title": "heloooooooooo",
+    "author": "mogdfddfhamed",
     "url": "www.google.com",
     "likes":232
     
+}
+###
+POST http://localhost:3003/api/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"mohamedaje",
+    "password":"aje"
 }
