@@ -5,6 +5,7 @@ import LoginForm from "./components/LoginForm";
 import blogService from "./Services/blogs";
 import loginService from "./Services/login";
 import Notification from "./components/Notification";
+import Togglable from "./components/Togglable";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -54,6 +55,22 @@ const App = () => {
     setUser(null);
     window.localStorage.clear();
   };
+  const addLikes = (id) => {
+    const blog = blogs.find((b) => b.id === id);
+    const updatedBlog = { ...blog, likes: blog.likes + 1 };
+
+    blogService
+      .update(id, updatedBlog)
+      .then((returnedBlog) => {
+        setBlogs(blogs.map((blog) => (blog.id !== id ? blog : returnedBlog)));
+      })
+      .catch((error) => {
+        setMessage("Something went wrong");
+        setTimeout(() => {
+          setMessage(null);
+        }, 5000);
+      });
+  };
   const addBlog = (e) => {
     e.preventDefault();
     console.log("title:", title, "author:", author, "url:", url);
@@ -76,7 +93,6 @@ const App = () => {
 
     console.log("a new Blog", title, "by", user.name);
   };
-
   const loginForm = () => (
     <LoginForm
       userOnchange={({ target }) => setUsername(target.value)}
@@ -86,7 +102,11 @@ const App = () => {
       handlelogin={handleLogin}
     />
   );
-  const blogForm = () => blogs.map((blog) => <Blog blog={blog} />);
+
+  const blogForm = () =>
+    blogs.map((blog) => (
+      <Blog key={blog.id} blog={blog} addLikes={(id) => addLikes(blog.id)} />
+    ));
 
   return (
     <div>
@@ -106,15 +126,17 @@ const App = () => {
             >
               logout
             </button>
-            <BlogForm
-              handleblog={addBlog}
-              title={title}
-              author={author}
-              url={url}
-              titleChange={({ target }) => setTitle(target.value)}
-              urlChange={({ target }) => setUrl(target.value)}
-              authorChange={({ target }) => setAuthor(target.value)}
-            />
+            <Togglable buttonLabel="new blog" name="cancel">
+              <BlogForm
+                handleblog={addBlog}
+                title={title}
+                author={author}
+                url={url}
+                titleChange={({ target }) => setTitle(target.value)}
+                urlChange={({ target }) => setUrl(target.value)}
+                authorChange={({ target }) => setAuthor(target.value)}
+              />
+            </Togglable>
           </p>
           {blogForm()}
         </div>

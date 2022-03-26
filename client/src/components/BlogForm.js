@@ -9,7 +9,7 @@ const BlogForm = ({
   urlChange,
 }) => {
   return (
-    <>
+    <div>
       <div>
         <h2>Create New Blog</h2>
       </div>
@@ -37,7 +37,7 @@ const BlogForm = ({
         </div>
         <button type="submit">Create</button>
       </form>
-    </>
+    </div>
   );
 };
 export default BlogForm;
