@@ -8,4 +8,5 @@ content-type: application/json
    "likes":456 
 }
 ###
-GET http://localhost:3003/api/blogs
+DELETE  http://localhost:3003/api/blogs/6240bdeaa99b29b3b68686c0
+Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ…nICOGw0

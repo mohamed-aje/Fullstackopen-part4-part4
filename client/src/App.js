@@ -21,7 +21,7 @@ const App = () => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
   }, []);
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem("loggedNoteappUser");
+    const loggedUserJSON = window.localStorage.getItem("loggedBlogappUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
@@ -45,6 +45,22 @@ const App = () => {
       setPassword("");
     } catch (exception) {
       setMessage("wrong credentials");
+      setTimeout(() => {
+        setMessage(null);
+      }, 5000);
+    }
+  };
+  const deleteHandler = (id) => {
+    console.log("clicked id", id);
+    const blog = blogs.find((b) => b.title);
+
+    const confirmed = window.confirm(`remove ${blog.title}`);
+    if (confirmed) {
+      blogService.remove(id).then((response) => {
+        setBlogs(blogs.map((blog) => (blog.id !== id ? blog : response)));
+      });
+
+      setMessage(`remove ${blog.title} by${user.name} `);
       setTimeout(() => {
         setMessage(null);
       }, 5000);
@@ -104,9 +120,16 @@ const App = () => {
   );
 
   const blogForm = () =>
-    blogs.map((blog) => (
-      <Blog key={blog.id} blog={blog} addLikes={(id) => addLikes(blog.id)} />
-    ));
+    blogs
+      .sort((a, b) => b.likes - a.likes)
+      .map((blog) => (
+        <Blog
+          key={blog.id}
+          blog={blog}
+          addLikes={(id) => addLikes(blog.id)}
+          deleteHandler={(id) => deleteHandler(blog.id)}
+        />
+      ));
 
   return (
     <div>
