@@ -1,6 +1,7 @@
 import React from "react";
 import Togglable from "./Togglable";
 const Blog = ({ blog, addLikes, deleteHandler }) => {
+  if (!blog.id) return null;
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,

@@ -16,7 +16,19 @@
   padding: 10px;
   margin-bottom: 10px;
 }
-.togglable {
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  background-color: rgb(48, 53, 54);
+  color: beige;
 }
-.blogTitle {
+.nav-links {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  background-color: rgb(48, 53, 54);
 }
