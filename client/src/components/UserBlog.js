@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import blogService from "../services/blogs";
 import Togglable from "./Togglable";
 import Blog from "./Blog";
+import BlogForm from "./BlogForm";
 
 const UserBlog = ({ user, setUser, setMessage }) => {
   console.log(user);
@@ -94,7 +95,7 @@ const UserBlog = ({ user, setUser, setMessage }) => {
       ));
 
   return (
-    <div>
+    <div className="container">
       <p>{user.name} logged-in </p>
       <button
         onClick={(e) => {
@@ -104,7 +105,7 @@ const UserBlog = ({ user, setUser, setMessage }) => {
         logout
       </button>
       <Togglable buttonLabel="new blog" name="cancel">
-        <blogForm
+        <BlogForm
           handleblog={addBlog}
           title={title}
           author={author}
@@ -114,7 +115,6 @@ const UserBlog = ({ user, setUser, setMessage }) => {
           authorChange={({ target }) => setAuthor(target.value)}
         />
       </Togglable>
-
       {blogForm()}
     </div>
   );

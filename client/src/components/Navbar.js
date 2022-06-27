@@ -9,16 +9,27 @@ const Navbar = () => {
       <ul className="nav-links">
         <li>
           {" "}
-          <h2>Blogs</h2>
+          <Link style={{ textDecoration: "none" }} to="/blogs">
+            {" "}
+            <li>
+              <h2>Blogs</h2>
+            </li>
+          </Link>
         </li>
-        <li>About</li>
+        <Link to="/about">
+          {" "}
+          <li>About</li>
+        </Link>
         <li>Blogs</li>
         search:
         <input />
         <Link to="/login">
           <button type="button">Login</button>
         </Link>{" "}
-        <button>Sign up</button>
+        <Link to="/signup">
+          {" "}
+          <button>Sign up</button>
+        </Link>
       </ul>
     </nav>
   );

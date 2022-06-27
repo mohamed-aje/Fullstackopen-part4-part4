@@ -7,8 +7,8 @@ userRouter.get("/", async (request, response) => {
   response.json(users);
 });
 userRouter.post("/", async (req, res) => {
-  const { username, name, password } = req.body;
-  const existingUser = await User.findOne({ username });
+  const { firstname, lastname, password, email } = req.body;
+  const existingUser = await User.findOne({ email });
 
   if (existingUser) {
     return res.status(400).json({
@@ -19,8 +19,9 @@ userRouter.post("/", async (req, res) => {
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(password, saltRounds);
   const user = new User({
-    username,
-    name,
+    firstname,
+    lastname,
+    email,
     passwordHash,
   });
   const savedUser = await user.save();

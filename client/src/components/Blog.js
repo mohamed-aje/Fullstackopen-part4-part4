@@ -11,7 +11,7 @@ const Blog = ({ blog, addLikes, deleteHandler }) => {
     display: "flex",
   };
   return (
-    <div style={blogStyle}>
+    <div style={blogStyle} className="card">
       <div>
         <div className="blogTitle">{blog.title}</div>
         <Togglable name="hide" buttonLabel="view">

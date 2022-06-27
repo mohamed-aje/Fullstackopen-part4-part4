@@ -1,4 +1,5 @@
 import React from "react";
+import { Button, Form } from "react-bootstrap";
 const BlogForm = ({
   handleblog,
   title,
@@ -13,30 +14,39 @@ const BlogForm = ({
       <div>
         <h2>Create New Blog</h2>
       </div>
-      <form onSubmit={handleblog}>
-        <div>
-          Title:{" "}
-          <input
+      <Form onSubmit={handleblog}>
+        <Form.Group className="mb-3">
+          <Form.Label>Title:</Form.Label>
+          <Form.Control
             type="text"
+            placeholder="Title"
             value={title}
-            name="title"
             onChange={titleChange}
           />
-        </div>
-        <div>
-          Author:{" "}
-          <input
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Author</Form.Label>
+          <Form.Control
             type="text"
-            name="author"
+            placeholder="Author Name"
             value={author}
             onChange={authorChange}
           />
-        </div>
-        <div>
-          Url: <input type="text" name="url" value={url} onChange={urlChange} />
-        </div>
-        <button type="submit">Create</button>
-      </form>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Url:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="url"
+            value={url}
+            onChange={urlChange}
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Create
+        </Button>
+      </Form>
     </div>
   );
 };

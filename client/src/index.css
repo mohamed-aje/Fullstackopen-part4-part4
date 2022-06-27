@@ -32,3 +32,6 @@ nav {
   list-style: none;
   background-color: rgb(48, 53, 54);
 }
+li {
+  color: beige;
+}
