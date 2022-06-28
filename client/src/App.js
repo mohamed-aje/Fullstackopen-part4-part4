@@ -40,17 +40,17 @@ const App = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    console.log("logging in with", username, password);
+    console.log("logging in with", email, password);
     try {
       const user = await loginService.login({
-        username,
+        email,
         password,
       });
       blogService.setToken(user.token);
 
       window.localStorage.setItem("loggedBlogAppUser", JSON.stringify(user));
       setUser(user);
-      setUsername("");
+      setEmail("");
       setPassword("");
     } catch (exception) {
       setMessage("wrong credentials");
@@ -79,9 +79,9 @@ const App = () => {
           path="/login"
           element={
             <LoginForm
-              userOnchange={({ target }) => setUsername(target.value)}
+              userOnchange={({ target }) => setEmail(target.value)}
               passwordOnchange={({ target }) => setPassword(target.value)}
-              username={username}
+              username={email}
               password={password}
               handlelogin={handleLogin}
             />
@@ -95,7 +95,7 @@ const App = () => {
         />
         <Route
           exact
-          path="/home"
+          path="/login"
           element={
             user ? (
               <Navigate to="blogs" replace={true} />
@@ -113,6 +113,7 @@ const App = () => {
               firstname={firstName}
               lastname={lastName}
               email={email}
+              password={signuppassword}
               signuppassword={signuppassword}
               passwordOnchange={(target) => setSignuppassword(target.value)}
               firstnameOnchange={({ target }) => setFirstname(target.value)}

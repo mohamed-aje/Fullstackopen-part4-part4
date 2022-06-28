@@ -20,9 +20,7 @@ const Navbar = () => {
           {" "}
           <li>About</li>
         </Link>
-        <li>Blogs</li>
-        search:
-        <input />
+        <li>Info</li>
         <Link to="/login">
           <button type="button">Login</button>
         </Link>{" "}

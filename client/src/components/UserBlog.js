@@ -5,7 +5,6 @@ import Blog from "./Blog";
 import BlogForm from "./BlogForm";
 
 const UserBlog = ({ user, setUser, setMessage }) => {
-  console.log(user);
   if (!user) return null;
   const handleLogout = (e) => {
     console.log("logged out");
