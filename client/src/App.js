@@ -13,7 +13,6 @@ import SignupForm from "./components/SignupForm";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
   const [firstName, setFirstname] = useState("");
@@ -67,6 +66,11 @@ const App = () => {
       setUser(foundUser);
     }
   }, []);
+  const handleLogout = (e) => {
+    console.log("logged out");
+    setUser(null);
+    window.localStorage.clear();
+  };
 
   return (
     <div>

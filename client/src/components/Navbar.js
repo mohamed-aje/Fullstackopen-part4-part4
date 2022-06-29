@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../index";
 import { Link } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
-
+import Togglable from "./Togglable";
+import useLocalStorage from "../hooks/useLocalStorage";
 const Navbar = () => {
+  let user = false;
+  useEffect(() => {}, []);
+  useLocalStorage("loggedBlogAppUser", ["token"]);
   return (
     <nav>
       <ul className="nav-links">
@@ -21,9 +25,13 @@ const Navbar = () => {
           <li>About</li>
         </Link>
         <li>Info</li>
-        <Link to="/login">
-          <button type="button">Login</button>
-        </Link>{" "}
+        {user ? (
+          <button>logout</button>
+        ) : (
+          <Link style={{ textDecoration: "none", color: "beige" }} to="/login">
+            login
+          </Link>
+        )}{" "}
         <Link to="/signup">
           {" "}
           <button>Sign up</button>
